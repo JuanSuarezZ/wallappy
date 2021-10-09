@@ -91,10 +91,7 @@ class PexelsProvider {
       final respuesta = await http.get(
           Uri.parse(
               "https://api.pexels.com/v1/search?query=$topic&page=$_page&per_page=$_perPage"),
-          headers: {
-            "Authorization":
-                "563492ad6f917000010000019170499f33014205a0aaf708e6bab33f"
-          });
+          headers: {"Authorization": key});
 
       final decoded = json.decode(respuesta.body);
 
@@ -116,21 +113,18 @@ class PexelsProvider {
   Future<void> seartchNextPage() async {
     try {
       if (_loading) {
-        print("no peticion, estoy cargando");
+        // print("no peticion, estoy cargando");
         return;
       }
       _loading = true;
 
-      print("realizando peticion");
-      print("next page----------");
+      // print("realizando peticion");
+      // print("next page----------");
 
       final respuesta = await http.get(
           Uri.parse(
               "https://api.pexels.com/v1/search?query=$topic&page=$_page&per_page=$_perPage"),
-          headers: {
-            "Authorization":
-                "563492ad6f917000010000019170499f33014205a0aaf708e6bab33f"
-          });
+          headers: {"Authorization": key});
 
       final decoded = json.decode(respuesta.body);
 
@@ -141,7 +135,7 @@ class PexelsProvider {
       _page++;
       Global.photos = _photos;
       photosSink(_photos);
-      print("peticion terminada");
+      // print("peticion terminada");
 
       _loading = false;
     } catch (e) {
@@ -153,12 +147,12 @@ class PexelsProvider {
   Future<void> searchFromTextField() async {
     try {
       if (_loading) {
-        print("no peticion, estoy cargando");
+        // print("no peticion, estoy cargando");
         return;
       }
-      print("estado controller: ${_textcontroller.text.isEmpty}");
+      // print("estado controller: ${_textcontroller.text.isEmpty}");
       if (_textcontroller.text.isEmpty) {
-        print("busqueda nula");
+        // print("busqueda nula");
       } else {
         _loading = true;
         _photos = [];
@@ -170,10 +164,7 @@ class PexelsProvider {
         final respuesta = await http.get(
             Uri.parse(
                 "https://api.pexels.com/v1/search?query=${_textcontroller.text}"),
-            headers: {
-              "Authorization":
-                  "563492ad6f917000010000019170499f33014205a0aaf708e6bab33f"
-            });
+            headers: {"Authorization": key});
         final decoded = json.decode(respuesta.body);
 
         for (var i in decoded['photos']) {
@@ -185,7 +176,7 @@ class PexelsProvider {
         photosSink(_photos);
         _textcontroller.clear();
 
-        print("peticion terminada");
+        // print("peticion terminada");
 
         _loading = false;
       }
@@ -198,7 +189,7 @@ class PexelsProvider {
   Future<void> searchFromCategory(String txt) async {
     try {
       if (_loading) {
-        print("no peticion, estoy cargando");
+        // print("no peticion, estoy cargando");
         return;
       }
       _loading = true;
@@ -207,14 +198,11 @@ class PexelsProvider {
       photosSink(_photos);
       setPage(1);
       this.topic = txt;
-      print("peticion desde categorias");
-      print("realizando peticion------");
+      // print("peticion desde categorias");
+      // print("realizando peticion------");
       final respuesta = await http.get(
           Uri.parse("https://api.pexels.com/v1/search?query=$txt"),
-          headers: {
-            "Authorization":
-                "563492ad6f917000010000019170499f33014205a0aaf708e6bab33f"
-          });
+          headers: {"Authorization": key});
 
       final decoded = json.decode(respuesta.body);
 

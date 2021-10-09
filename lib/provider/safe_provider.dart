@@ -29,11 +29,11 @@ class SafeProvider {
     try {
       final res =
           await platform.invokeMethod("set_home_wallpaper", {'url': getImage});
-      print("se ha cambiado el fondo");
+      // print("se ha cambiado el fondo");
       await estadosSink(false);
       return res;
     } on PlatformException catch (e) {
-      print("No se ha cambiado el fondo");
+      // print("No se ha cambiado el fondo");
       print("Error: $e");
       await estadosSink(false);
       return false;
@@ -46,11 +46,11 @@ class SafeProvider {
       await Future.delayed(Duration(milliseconds: 1500));
       await platform.invokeMethod(
           "download_image_dm", {'link': getImage, 'filename': nombre});
-      print("Se ha descargado la imagen");
+      // print("Se ha descargado la imagen");
       await estadosSink(false);
       return true;
     } on PlatformException catch (e) {
-      print("No ha descargado la imagen");
+      // print("No ha descargado la imagen");
       print("error: $e");
     }
     await estadosSink(false);
@@ -59,11 +59,11 @@ class SafeProvider {
 
   Future<bool> checkStoragePermissions() async {
     if (await Permission.storage.status.isDenied) {
-      print("No tenemos storage permisos");
+      // print("No tenemos storage permisos");
       await Permission.storage.request();
       return false;
     }
-    print("Si tenemos storage permisos");
+    // print("Si tenemos storage permisos");
     return true;
   }
 }

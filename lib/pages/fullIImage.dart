@@ -102,7 +102,7 @@ class _FullImageState extends State<FullImage> {
         return StreamBuilder(
           stream: provider.estadosStrem,
           builder: (context, AsyncSnapshot<Object?> snapshot) {
-            print("Stream builder state: ${snapshot.data.toString()}");
+            // print("Stream builder state: ${snapshot.data.toString()}");
             if (snapshot.hasData) {
               if (snapshot.data == true) {
                 return CircularCustomProgress();
@@ -222,7 +222,7 @@ class _FullImageState extends State<FullImage> {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light
           .copyWith(statusBarIconBrightness: Brightness.light));
     }
-    print("paleta cargada!");
+    // print("paleta cargada!");
 
     return;
   }
@@ -249,7 +249,7 @@ class _FullImageState extends State<FullImage> {
           .copyWith(statusBarIconBrightness: Brightness.light));
     }
 
-    print("paleta actualizada!");
+    // print("paleta actualizada!");
 
     setState(() {});
     return;

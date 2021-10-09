@@ -211,6 +211,7 @@ class _PinterestItem extends StatelessWidget {
             ),
           ),
         ),
+
         // Align(
         //     alignment: Alignment.bottomRight,
         //     child: Container(
